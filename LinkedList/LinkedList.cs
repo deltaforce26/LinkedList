@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using static System.Runtime.InteropServices.JavaScript.JSType;
@@ -200,6 +201,11 @@ namespace data_structures
                 }
             }
             return -1;
+        }
+
+        public int Get(int index)
+        {
+
         }
     }
 }
