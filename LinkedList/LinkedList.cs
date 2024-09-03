@@ -207,16 +207,17 @@ namespace data_structures
         {
             if (Head == null)
                 return int.MinValue;
-            int result = 0;
+            int temp = 0;
             Node current = Head;
             while (current != null)
             {
-                if (current.GetValue() == index)
+                if (temp == index)
                 {
-                    result = current.GetValue();
+                    return current.GetValue();
                 }
+                current = current.GetNext();
             }
-            return result;
+            return int.MinValue;
         }
     }
 }
