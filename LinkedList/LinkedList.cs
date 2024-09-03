@@ -203,9 +203,20 @@ namespace data_structures
             return -1;
         }
 
-        //public int Get(int index)
-        //{
-
-        //}
+        public int Get(int index)
+        {
+            if (Head == null)
+                return int.MinValue;
+            int result = 0;
+            Node current = Head;
+            while (current != null)
+            {
+                if (current.GetValue() == index)
+                {
+                    result = current.GetValue();
+                }
+            }
+            return result;
+        }
     }
 }
