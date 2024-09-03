@@ -106,15 +106,59 @@ namespace data_structures
                 if (value == data)
                 {
                     if (current.GetNext() != null)
+                    {
                         previous.SetNext(current.GetNext());
+                        return;
+                    }
                     else
+                    {
                         previous.SetNext(null);
-
-                    current.SetNext(null);
+                        return;
+                    }
                 }
                 previous = current;
-                current = current.GetNext();
+                if(current.GetNext() == null)
+                    return ;
+                else
+                {
+                    current = current.GetNext();
+                }
+            }
+                    
+        }
+
+        public void RemoveAllValues(int data)
+        {
+            if (Head == null)
+                return;
+
+            Node previous = Head;
+            Node current = Head;
+            while (current != null)
+            {
+                int value = current.GetValue();
+                if (value == data)
+                {
+                    if (current.GetNext() != null)
+                    {
+                        previous.SetNext(current.GetNext());
+                    }
+                    else
+                    {
+                        previous.SetNext(null);
+                        
+                    }
+                }
+                previous = current;
+                if (current.GetNext() != null)
+                    current = current.GetNext();
+                else
+                {
+                    return ;
+                }
             }
         }
+
+
     }
 }
