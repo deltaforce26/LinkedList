@@ -159,6 +159,47 @@ namespace data_structures
             }
         }
 
+        public void RemoveIndex(int data)
+        {
+            int index = 0;
+            if (Head == null)
+                return;
+            Node previous = Head;
+            Node current = Head;
+            while(current != null)
+            {
+                if(index == data)
+                {
+                    current.SetNext(null);
+                    if (current.GetNext() != null)
+                    {
+                        previous.SetNext(current.GetNext());
+                        return ;
+                    }
+                    else
+                    {
+                        previous.SetNext(null);
+                        return;
+                    }
+                }
+            }
 
+        }
+
+        public int Find(int data)
+        {
+            if(Head == null)
+                return -1;
+            int index = 0;
+            Node current = Head;
+            while (current != null)
+            {
+                if(current.GetValue() == data)
+                {
+                    return index;
+                }
+            }
+            return -1;
+        }
     }
 }
