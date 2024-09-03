@@ -216,6 +216,7 @@ namespace data_structures
                     return current.GetValue();
                 }
                 current = current.GetNext();
+                temp++;
             }
             return int.MinValue;
         }
