@@ -207,8 +207,10 @@ namespace data_structures
         {
             if (Head == null)
                 return int.MinValue;
+
             int temp = 0;
             Node current = Head;
+
             while (current != null)
             {
                 if (temp == index)
@@ -220,8 +222,9 @@ namespace data_structures
                     current = current.GetNext();
                     temp++;
                 }
+                return int.MinValue;
             }
-            return int.MinValue;
+            
         }
     }
 }
