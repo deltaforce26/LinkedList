@@ -14,6 +14,7 @@ namespace data_structures
         {
             Value = data;
         }
+
         private int Value;
         private Node? Next = null;
 
@@ -55,7 +56,10 @@ namespace data_structures
         {
             Node node = new Node(data);
             if (Head == null)
-                Head = node;
+            {  
+                Head = node; 
+            }
+                
             else
             {
                 Node current = Head;
@@ -76,7 +80,15 @@ namespace data_structures
             Node current = Head;
             while (current != null)
             {
-                nodes += current.GetValue() + "->";
+                if(current.GetNext() == null)
+                {
+                    nodes += current.GetValue();
+                }
+                else
+                {
+                    nodes += current.GetValue() + " -> ";
+                }
+                current = current.GetNext();
             }
             return nodes;
         }
@@ -89,6 +101,8 @@ namespace data_structures
             Node current = Head;
             while (current != null)
             {
+                Node next = current.GetNext();
+                current = next;
                 length++;
             }
             return length;
@@ -99,31 +113,24 @@ namespace data_structures
             if (Head == null)
                 return;
 
+            if (Head.GetValue() == data)
+            {
+                Head = Head.GetNext();
+            }
+
             Node previous = Head;
             Node current = Head;
+
             while (current != null)
             {
                 int value = current.GetValue();
                 if (value == data)
                 {
-                    if (current.GetNext() != null)
-                    {
-                        previous.SetNext(current.GetNext());
-                        return;
-                    }
-                    else
-                    {
-                        previous.SetNext(null);
-                        return;
-                    }
+                    previous.SetNext(current.GetNext());
+                    return;
                 }
                 previous = current;
-                if(current.GetNext() == null)
-                    return ;
-                else
-                {
-                    current = current.GetNext();
-                }
+                current = current.GetNext();
             }
                     
         }
@@ -133,31 +140,29 @@ namespace data_structures
             if (Head == null)
                 return;
 
+            while (Head != null && Head.GetValue() == data)
+            {
+                Head = Head.GetNext();
+            }
+
             Node previous = Head;
             Node current = Head;
+
             while (current != null)
             {
-                int value = current.GetValue();
-                if (value == data)
+                if (current.GetValue() == data)
                 {
-                    if (current.GetNext() != null)
-                    {
-                        previous.SetNext(current.GetNext());
-                    }
-                    else
-                    {
-                        previous.SetNext(null);
-                        
-                    }
-                }
-                previous = current;
-                if (current.GetNext() != null)
+                    previous.SetNext(current.GetNext());
                     current = current.GetNext();
+                }
                 else
                 {
-                    return ;
+                    previous = current;
+                    current = current.GetNext();
                 }
+                
             }
+            
         }
 
         public void RemoveIndex(int data)
@@ -165,24 +170,24 @@ namespace data_structures
             int index = 0;
             if (Head == null)
                 return;
+
+            if(Head.GetValue() == data)
+            {
+                Head = Head.GetNext();
+            }
+
             Node previous = Head;
             Node current = Head;
+
             while(current != null)
             {
                 if(index == data)
                 {
-                    current.SetNext(null);
-                    if (current.GetNext() != null)
-                    {
-                        previous.SetNext(current.GetNext());
-                        return ;
-                    }
-                    else
-                    {
-                        previous.SetNext(null);
-                        return;
-                    }
+                    previous.SetNext(current.GetNext());
+                    return;
                 }
+                current = current.GetNext();
+                index++;
             }
 
         }
@@ -191,6 +196,7 @@ namespace data_structures
         {
             if(Head == null)
                 return -1;
+
             int index = 0;
             Node current = Head;
             while (current != null)
@@ -199,32 +205,38 @@ namespace data_structures
                 {
                     return index;
                 }
+                current = current.GetNext();
+                index++;
             }
             return -1;
         }
 
         public int Get(int index)
         {
+            // 1
             if (Head == null)
-                return int.MinValue;
-
+                return -1;
+            // 1
             int temp = 0;
+            // 1
             Node current = Head;
-
+            //            1
             while (current != null)
             {
+                //      1
                 if (temp == index)
                 {
                     return current.GetValue();
                 }
-                if(current.GetNext() != null)
+                else
                 {
+                    // 1
                     current = current.GetNext();
+                    // 1
                     temp++;
                 }
-                return int.MinValue;
             }
-            
+            return -1;
         }
     }
 }
